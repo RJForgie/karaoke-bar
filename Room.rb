@@ -15,11 +15,16 @@ class Room
   end
 
   def add_guest_to_room(guests)
-    @guestlist.push(guests)
+    if @guestlist.length < @capacity
+      @guestlist.push(guests)
+    else
+      return "Room full"
+    end
   end
 
   def remove_guest_from_room(guests)
     @guestlist.delete(guests)
   end
+
 
 end

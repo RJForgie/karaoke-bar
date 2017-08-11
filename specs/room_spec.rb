@@ -56,7 +56,9 @@ class TestRoom < MiniTest::Test
     @room_1.add_guest_to_room(@guest_1)
     @room_1.add_guest_to_room(@guest_2)
     @room_1.add_guest_to_room(@guest_3)
-    @room_1.add_guest_to_room(@guest_4)
+    result = @room_1.add_guest_to_room(@guest_4)
+    assert_equal(3, @room_1.guestlist.count)
+    assert_equal('Room full', result)
   end
 
 
