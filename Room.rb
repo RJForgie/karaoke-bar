@@ -12,7 +12,6 @@ class Room
 
   def add_songs_to_playlist(song)
     @playlist << song
-    # songs.each{|song|
   end
 
   def add_guest_to_room(guest)
