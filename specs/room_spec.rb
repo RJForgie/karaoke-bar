@@ -11,11 +11,11 @@ class TestRoom < MiniTest::Test
     @song_1 = Song.new("Back in Black", "ACDC")
     @song_2 = Song.new("Enter Sandman", "Metallica")
     @song_3 = Song.new("Proud Mary", "Tina Turner")
-    @guest_1 = Guest.new("George", 50)
-    @guest_2 = Guest.new("Sally", 40)
-    @guest_3 = Guest.new("Jim", 30)
-    @guest_4 = Guest.new("Jenny", 20)
-    @guest_5 = Guest.new("John", 5)
+    @guest_1 = Guest.new("George", 50, "Back in Black")
+    @guest_2 = Guest.new("Sally", 40, "Enter Sandman")
+    @guest_3 = Guest.new("Jim", 30, "Proud Mary")
+    @guest_4 = Guest.new("Jenny", 20, "Thunderstruck")
+    @guest_5 = Guest.new("John", 5, "Slow Hands")
   end
 
   def test_room_number_and_capacity
@@ -47,11 +47,6 @@ class TestRoom < MiniTest::Test
     assert_equal(0, @room_1.guestlist.length)
   end
 
-  # def test_room_playlist
-  #   room_playlist  = [@song_1, @song_2, @song_3]
-  #   @room_1.add_songs_to_playlist(room_playlist)
-  #   assert_equal(3, @room_1.playlist.length)
-  # end
 
   def test_room_is_has_no_more_capacity
     @room_1.add_guest_to_room(@guest_1)
@@ -75,6 +70,12 @@ class TestRoom < MiniTest::Test
   def test_guest_cannot_enter_with_empty_wallet
     result = @room_1.add_guest_to_room(@guest_5)
     assert_equal('Not tonight', result)
+  end
+
+  def test_guest_woo_favourite_song
+    @room_1.add_songs_to_playlist(@song_1)
+    result = @room_1.add_guest_to_room(@guest_1)
+    assert_equal("Whoo!", result)
   end
 
 
